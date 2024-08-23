@@ -22,7 +22,8 @@ This is a tasmota setting guide of MCP230XX (MCP23017 and MCP23008) and also int
 1. Go to `Configuration` -> `Configure Module` page and select `I2C SDA` and `I2C SCL` pins for the MCP230XX I2C GPIO expander.
 2. Go to `Tools` -> `Consoles` and enter the following commands:
   * `I2Cscan`: Check if the MCP230XX I2C GPIO expander is detected (0x20)
-  * `Sensor29 Reset2`: Set the MCP230XX I2C GPIO expander to `input mode with pull-up` 
+  * `Sensor29 Reset2`: Set the MCP230XX I2C GPIO expander to `input mode with pull-up`
+  * `SetOption59 1`: Set extra SENSOR status telemetry messages (for HomeAssistnat)
 3. You should see the console output similar to the following:
   `stat/tasmota/RESULT = {"Sensor29_D99":{"MODE":2,"PULL_UP":"ON","INT_MODE":"ALL","STATE":""}}`
 4. Go to `Configuration` -> `Manage File system` and upload the `MCP230XX_WebUI.be` script. Make sure the file is uploaded successfully.
