@@ -29,7 +29,8 @@ This is a tasmota setting guide of MCP230XX (MCP23017 and MCP23008) and also int
 5. Also in the `Manage File system`, add the following line into `autoexec.be` file (If you don't have this file, create it):
   * `load('MCP23017_WebUI.be')`
 6. Reboot the device and you should see the MCP230XX I2C GPIO expander status in the web interface.
-![](https://raw.githubusercontent.com/JyunWei-Su/MCP230XX-Tasmota/img/tasmota_webui.png)
+  ![](https://raw.githubusercontent.com/JyunWei-Su/MCP230XX-Tasmota/main/img/tasmota_webui.png)
+7. If you want to change the state text such as `ON/OFF` or `OPEN/CLOSE`, you can change the line `var state_text = {-1:"NULL", 0:"CLOSE", 1:"OPEN"}` in `MCP23017_WebUI.be`
 
 ## Other commands usually used
 * `SetOption146 1`: Enable display of ESP32 internal temperature
@@ -45,12 +46,12 @@ This is a tasmota setting guide of MCP230XX (MCP23017 and MCP23008) and also int
   * `Password`: Your HomeAssistant MQTT password (Remember to check the Password box)
 3. Back to HomeAssistant, go to `Configuration` -> `Integrations` and add the `MQTT` and `Tasmota` integration.
 4. The Tasmota device should be detected by HomeAssistant automatically.
-### Using the template to redirect the sensor data
-1. In HomeAssistant, go to `Device and Services` -> `Helpers` -> `Add Helper` -> `Template` -> `Template a binary sensor`
+### Using the template to redirect the sensor state
+1. In HomeAssistant, go to `Device and Services` -> `Helpers` -> `CREATE HELPER` -> `Template` -> `Template a binary sensor`
 2. Enter the following settings:
   * Name: Your sensor name (e.g. `Demo Window`)
-  * State template: `{{ states('sensor.tasmota_mcp230xx_d0') }}` (Change the d0 to d1, d2, d3, etc. based on the id 0~15)
+  * State template: `{{ states('sensor.tasmota_mcp230xx_d0') }}` (Change the `d0` to `d0`~`d15` depends)
   * Device class: `Window` (depends on your sensor type)
   * Then click `SUBMIT`
-  ![](https://raw.githubusercontent.com/JyunWei-Su/MCP230XX-Tasmota/img/binary_sensor_template_config.png)
+  ![](https://raw.githubusercontent.com/JyunWei-Su/MCP230XX-Tasmota/main/img/binary_sensor_template_config.png)
 3. You can see the sensor status in the HomeAssistant.
