@@ -21,9 +21,9 @@ class MCP230XX_WebUI
     #if !self.wire return nil end #- exit if not initialized -#
     var sensors = json.load(tasmota.read_sensors())
     self.mcp230xx = sensors.find('MCP230XX', {})
-    if mcp230xx.find('D15', nil)
+    if self.mcp230xx.find('D15', nil)
       self.type = 'MCP23017'
-    elif mcp230xx.find('D7', nil)
+    elif self.mcp230xx.find('D7', nil)
       self.type = 'MCP23008'
     else
       self.type = 'Unknown'
@@ -41,7 +41,7 @@ class MCP230XX_WebUI
 
     var state_text = {-1:"NULL", 0:"CLOSE", 1:"OPEN"}
     var msg = string.format(
-             "{s}MCP230XX {m}%s @ 0x%02x{e}"..
+             "{s}%s Address{m}0x%02x{e}"..
              "{s}MCP230XX D0{m}%s{e}"..
              "{s}MCP230XX D1{m}%s{e}"..
              "{s}MCP230XX D2{m}%s{e}"..
